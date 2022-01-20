@@ -1,0 +1,30 @@
+<% require 'pry' %>
+<%= form_for [@user, @trip] do |f| %>
+    <% if @trip.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <% @trip.errors.full_messages.each do |message| %>
+           <ul>
+           <li><%= message %></li>
+           </ul>
+          <% end %>
+      </div>
+    <% end %>
+     
+    <div>
+      <%= render "trip_fields", f: f %>
+    </div>
+   
+    <div id="eatery_trips">
+      
+      <h3>Eatery</h3>
+      <%= f.fields_for :eatery_trips do |ff| %>
+        <%= ff.collection_select :eatery_id, Eatery.all, :id, :name, {:prompt => 'Select'} %>
+      <%= render "eatery_trips_fields", ff: ff %>
+      <% end %>
+      
+    </div>
+ 
+<%= render "submit_button" %>
+<% end %> 
+ 

@@ -1,0 +1,32 @@
+<% require 'pry' %>
+<header>
+  <h1>Account Signup</h1>
+
+  <%= form_for @user, url: signup_path do |f| %>
+
+  <% if @user.errors.any? %>
+  Please address the following before submitting:
+   <% @user.errors.full_messages.each do |message| %>
+     <h3><i><%= message %></i></h3>
+  <% end %> 
+<% end %>
+   
+      <%= f.label :name %>
+      <%= f.text_field :name %><br />
+      <%= f.label :email %>
+      <%= f.text_field :email %><br />
+
+      <%= f.label :password %>
+      <%= f.password_field :password %><br />
+      <br />
+      <%= f.submit "Create account" %>
+    <% end %>
+</header >
+<br/>
+<br/>
+
+
+<br>
+<br>
+
+
